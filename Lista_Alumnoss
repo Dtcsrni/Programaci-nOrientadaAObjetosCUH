@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lista_Alumnoss
+{
+    class Menu
+    {
+        
+        private List<Alumno> lista_alumnos;
+
+        static void Main(string[] args)
+        {
+            int opcion;
+            do
+            {
+
+                do
+                {
+                    Console.WriteLine("||||Bienvenido||||||Menu Opciones||");
+                    Console.WriteLine("--------------------");
+                    Console.WriteLine("1. Ingresa un nombre a la lista");
+                    Console.WriteLine("2. Modifica un nombre de la lista");
+                    Console.WriteLine("3. Borra un nombre de la lista");
+                    Console.WriteLine("4. Imprime en pantalla la lista completa");
+                    Console.WriteLine("5. Salir");
+                    opcion = int.Parse(Console.ReadLine());
+                } while (opcion < 1 || opcion > 6);
+                switch (opcion)
+                {
+                    case 1:
+                }
+
+                }
+    }
+}

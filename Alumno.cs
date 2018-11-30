@@ -12,7 +12,7 @@ namespace Lista_Alumnoss
         public string Nombre
         {
             get { return nombre; }
-            set { nombre=value; }
+            set { nombre = value; }
         }
         private string matricula;
         public string Matricula
@@ -32,6 +32,12 @@ namespace Lista_Alumnoss
         {
             get { return carrera; }
             set { carrera = value; }
+        }
+        private string turno;
+        public string Turno
+        {
+            get { return turno; }
+            set { turno = value; }
         }
     }
 }

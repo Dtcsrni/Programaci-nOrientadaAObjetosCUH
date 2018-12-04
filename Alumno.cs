@@ -14,8 +14,8 @@ namespace Lista_Alumnoss
             get { return nombre; }
             set { nombre = value; }
         }
-        private string matricula;
-        public string Matricula
+        private int matricula;
+        public int Matricula
         {
             get { return matricula; }
             set { matricula = value; }

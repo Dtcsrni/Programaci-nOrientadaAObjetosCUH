@@ -11,11 +11,11 @@ namespace Lista_Alumnoss
     {
 
 
-
+        
         static void Main(string[] args)
         {
             Alumno alumnos = new Alumno();
-            List<Alumno> lista_alumno = new List<Alumno>();
+            string ruta = "C:/Users/EA-25-6/Desktop/alumnos.txt";
 
             int opcion;
             do
@@ -46,7 +46,7 @@ namespace Lista_Alumnoss
                         Console.WriteLine("Ingrese la matricula:");
                         alumnos.Matricula = int.Parse(Console.ReadLine());
 
-                        StreamWriter escritura = File.AppendText("C:/Users/EA-25-6/Desktop/alumnos.txt");
+                        StreamWriter escritura = File.AppendText(ruta);
 
                         escritura.WriteLine(alumnos.Nombre+","+alumnos.Carrera+","+alumnos.Turno+","+alumnos.Grupo+","+alumnos.Matricula);
 
@@ -59,28 +59,15 @@ namespace Lista_Alumnoss
 
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("Ingresa la matricula:");
-                        int modifica = int.Parse(Console.ReadLine());
-                        foreach (Alumno alumno in lista_alumno)
-                        {
-                            if (alumno.Matricula == modifica)
-                            {
-                                Alumno alumnomodif = new Alumno();
-                                int posicion = lista_alumno.IndexOf(alumno);
-                                Console.Write("Ingresa el nuevo nombre del alumno");
-                                alumnomodif.Nombre = Console.ReadLine();
-                                lista_alumno[posicion].Nombre = alumnomodif.Nombre;
-                                Console.Write("Ingresa la nueva carrera del alumno: ");
-                                alumnomodif.Carrera = Console.ReadLine();
-                                lista_alumno[posicion].Carrera = alumnomodif.Carrera;
-                                Console.Write("Ingresa el nuevo grupo del alumno");
-                                alumnomodif.Grupo = Console.ReadLine();
-                                lista_alumno[posicion].Grupo = alumnomodif.Grupo;
-                                Console.Write("Ingresa el nuevo turno del alumno: ");
-                                alumnomodif.Turno = Console.ReadLine();
-                                lista_alumno[posicion].Turno = alumnomodif.Turno;
-                            }
+                        Console.WriteLine("Ingresa la matricula del alumno a buscar:");
+                        int buscar = int.Parse(Console.ReadLine());
 
+                        string alumno;
+                        try
+                        {
+                            StreamReader lectura = File.OpenText(ruta);
+                            Console.Write("Ingresa la matricula del alumno a buscar");
+                            
                         }
 
 
@@ -88,27 +75,11 @@ namespace Lista_Alumnoss
                         break;
 
                     case 3:
-                        Console.Write("Ingresa la matricula del alumno a eliminar");
-                        int elimina = int.Parse(Console.ReadLine());
-                        lista_alumno.RemoveAll(alumno => alumno.Matricula == elimina);
-                        Console.Write("El registro del alumno se eliminó con exito \n");
-                        Console.Write("");
-                        break;
+                        
 
 
                     case 4:
-                        foreach (Alumno elemento in lista_alumno)
-                        {
-                            Console.WriteLine("------------------------------");
-                            Console.WriteLine("Matrícula: " + elemento.Matricula);
-                            Console.WriteLine("Nombre: " + elemento.Nombre);
-                            Console.WriteLine("Carrera: " + elemento.Carrera);
-                            Console.WriteLine("Grupo: " + elemento.Grupo);
-                            Console.WriteLine("Turno: " + elemento.Turno);
-                            Console.WriteLine("");
-                        }
-
-                        break;
+                        
 
                     case 5:
 

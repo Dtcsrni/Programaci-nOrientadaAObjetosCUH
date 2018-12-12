@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lista_Alumnoss
 {
-    class Alumnoclase
+    class Lista_Alumnos
     {
 
 

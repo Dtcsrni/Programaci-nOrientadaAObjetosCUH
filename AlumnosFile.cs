@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Lista_Alumnoss
 {
-    class Alumnoclase
+    class AlumnosFile
     {
 
 
@@ -25,7 +25,7 @@ namespace Lista_Alumnoss
                     Console.WriteLine("||||Bienvenido||||||Menu Opciones||");
                     Console.WriteLine("--------------------");
                     Console.WriteLine("1. Ingresar a un alumno");
-                    Console.WriteLine("2. Modifica un nombre de la lista");
+                    Console.WriteLine("2. buscar un nombre de la lista");
                     Console.WriteLine("3. Borra un nombre de la lista");
                     Console.WriteLine("4. Imprime en pantalla la lista completa");
                     Console.WriteLine("5. Salir");
@@ -46,9 +46,9 @@ namespace Lista_Alumnoss
                         Console.WriteLine("Ingrese la matricula:");
                         alumnos.Matricula = int.Parse(Console.ReadLine());
 
-                        StreamWriter escritura = File.AppendText("C:/alumnos.txt");
+                        StreamWriter escritura = File.AppendText("C:/Users/EA-25-6/Desktop/alumnos.txt");
 
-                        escritura.WriteLine(alumnos.Nombre+""+alumnos.Carrera+""+alumnos.Turno+""+alumnos.Grupo+""+alumnos.Matricula);
+                        escritura.WriteLine(alumnos.Nombre+","+alumnos.Carrera+","+alumnos.Turno+","+alumnos.Grupo+","+alumnos.Matricula);
 
                         escritura.Close();
 

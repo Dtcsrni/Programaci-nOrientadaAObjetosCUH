@@ -46,7 +46,10 @@ namespace Lista_Alumnoss
                         Console.WriteLine("Ingrese la matricula:");
                         alumnos.Matricula = int.Parse(Console.ReadLine());
 
-                        StreamWriter escritura = File.AppendText(alumnos.Nombre+","+alumnos.Carrera+","+alumnos.Grupo+","+alumnos.Matricula+","+alumnos.Turno);
+                        StreamWriter escritura = File.AppendText("C:/alumnos.txt");
+
+                        escritura.WriteLine(alumnos.Nombre+""+alumnos.Carrera+""+alumnos.Turno+""+alumnos.Grupo+""+alumnos.Matricula);
+
                         escritura.Close();
 
                         Console.Clear();

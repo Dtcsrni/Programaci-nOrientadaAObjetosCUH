@@ -1,0 +1,138 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Productoss
+{
+    class productos
+    {
+
+         
+
+        static void Main(string[] args)
+        {
+            List<Productos> lista_productos = new List<Productos>();
+            
+
+            int conta=0;
+            int opcion;
+            do
+            {
+                
+
+                do
+                {
+                    
+
+                    Console.WriteLine("||||Bienvenido||||||Menu Opciones||");
+                    Console.WriteLine("--------------------");
+                    Console.WriteLine("1. Ingresar un producto");
+                    Console.WriteLine("2. Modifica un producto de la lista");
+                    Console.WriteLine("3. Borra un nombre de la lista");
+                    Console.WriteLine("4. Imprime en pantalla la lista completa");
+                    Console.WriteLine("5. Salir");
+                    opcion = int.Parse(Console.ReadLine());
+                } while (opcion < 1 || opcion > 5);
+                switch (opcion)
+                {
+                    
+                    case 1:
+                        
+                        
+
+                            Productos producto = new Productos();
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el nombre del producto:");
+                            producto.Nombre = Console.ReadLine();
+                            Console.WriteLine("Ingrese el precio del producto:");
+                            producto.Precio = float.Parse(Console.ReadLine());
+                            Console.WriteLine("Ingrese la cantidad en existencia");
+                            producto.Existencia = int.Parse(Console.ReadLine()); ;
+                            Console.WriteLine("Ingrese nombre del proveedor:");
+                            producto.Proveedor = Console.ReadLine();
+
+
+                            lista_productos.Add(producto);
+
+
+                            Console.Clear();
+                            Console.WriteLine("\n--Producto " + producto.Nombre + " agregado a la base de datos \n");
+                            Console.WriteLine("Presione una tecla para continuar con el siguiente producto");
+                            Console.ReadKey();
+                            
+                        
+
+                        foreach(Productos product in lista_productos)
+                        {
+                            Productos productor = new Productos();
+                            productor.Nombre = product.Nombre;
+                            productor.Precio = product.Precio;
+                            productor.Existencia = product.Existencia;
+                            productor.Proveedor = product.Proveedor;
+
+                            Console.WriteLine("Producto: "+ productor.Nombre+" Precio: "+ productor.Precio+" Existencias:"+ productor.Existencia+" Proveedor:"+ productor.Proveedor);
+                        }
+
+
+
+
+
+                        break;
+
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("Ingresa el nombre:");
+                        String modifica = Console.ReadLine();
+                        foreach (Productos product in lista_productos)
+                        {
+                            if (product.Nombre == modifica)
+                            {
+                                Productos productor = new Productos();
+                                int posicion = lista_productos.IndexOf(product);
+                                Console.Write("Ingresa el nuevo nombre del producto");
+                                productor.Nombre = Console.ReadLine();
+                                lista_productos[posicion].Nombre = productor.Nombre;
+                                Console.Write("Ingresa nuevo precio: ");
+                                productor.Precio = int.Parse(Console.ReadLine());
+                                lista_productos[posicion].Precio = productor.Precio;
+                                Console.Write("Ingresa la existencia");
+                                productor.Existencia = int.Parse(Console.ReadLine());
+                                lista_productos[posicion].Existencia = productor.Existencia;
+                                Console.Write("Ingresa el nuevo proveedor: ");
+                                productor.Proveedor = Console.ReadLine();
+                                lista_productos[posicion].Proveedor = productor.Proveedor;
+                            }
+
+                        }
+                        
+                        break;
+
+                    case 3:
+                        foreach (Productos product in lista_productos)
+                        {
+                            Productos productor = new Productos();
+                            productor.Nombre = product.Nombre;
+                            productor.Precio = product.Precio;
+                            productor.Existencia = product.Existencia;
+                            productor.Proveedor = product.Proveedor;
+
+                            Console.WriteLine("Producto: " + productor.Nombre + " Precio: " + productor.Precio + " Existencias:" + productor.Existencia + " Proveedor:" + productor.Proveedor);
+                        }
+
+                        break;
+                    case 4:
+                       
+
+                        break;
+
+                    case 5:
+
+                        break;
+                }
+            } while (opcion != 5);
+
+        }
+    }
+}

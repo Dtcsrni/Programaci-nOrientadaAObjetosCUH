@@ -1,0 +1,231 @@
+using System;
+using System.IO;
+namespace archivos1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+
+            int opcion;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("||||Bienvenido||||");
+                Console.WriteLine("Ingrese acción a realizar");
+                Console.WriteLine("1.-ALTAS\n2.-BAJAS\n3.-VENTAS\n4.-CONSULTAS\n5.-Salir");
+                opcion = int.Parse(Console.ReadLine());
+
+                switch (opcion)
+                {
+                    case 1://ALTAS
+                        String respuesta, Id_Producto, Producto, Presentacion, Proveedor, registro;
+                        float Costo, Precio_Publico;
+                        int Existencia;
+                        //Creamos el archivo
+                        StreamWriter escritura1 = File.AppendText("C:/archivos/farmacos.txt");
+                        do
+                        {
+
+                            Console.WriteLine("Ingresa el ID del producto: ");
+                            Id_Producto = Console.ReadLine();
+                            Console.WriteLine("Ingresa el nombre del producto: ");
+                            Producto = Console.ReadLine();
+                            Console.WriteLine("Ingresa la presentacion del producto: ");
+                            Presentacion = Console.ReadLine();
+                            Console.WriteLine("Ingresa el costo del producto: ");
+                            Costo = float.Parse(Console.ReadLine());
+                            Console.WriteLine("Ingresa el proveedor: ");
+                            Proveedor = Console.ReadLine();
+                            Console.WriteLine("Ingresa la existencia: ");
+                            Existencia = int.Parse(Console.ReadLine());
+                            Precio_Publico = Costo + ((Costo * 50) / 100);
+
+                            registro = Id_Producto + "," + Producto + "," + Presentacion + "," + Costo + "," + Proveedor+","+Existencia+","+Precio_Publico;
+
+                            escritura1.WriteLine(registro);
+                            Console.Write("Deseas dar de alta otro farmaco? (s/n)");
+                            respuesta = Console.ReadLine();
+                        } while (respuesta != "n");
+                        
+                        escritura1.Close();
+                        break;
+                    case 2://BAJAS
+                        StreamReader lectura12;
+                        StreamWriter escribir12;
+                        String cadena12, farmaco12;
+                        bool encontrado12;
+                        encontrado12 = false;
+                        String[] campos12 = new string[7];
+                        try
+                        {
+                            lectura12 = File.OpenText("C:/archivos/farmacos.txt");
+                            escribir12 = File.CreateText("C:/archivos/tmp.txt");
+                            Console.Write("Ingresa el nombre de producto a eliminar:");
+                            farmaco12 = Console.ReadLine();
+                            cadena12 = lectura12.ReadLine();
+
+                            while (cadena12 != null)
+                            {
+                                campos12 = cadena12.Split(',');
+                                if (campos12[0].Equals(farmaco12))
+                                {
+                                    encontrado12 = true;
+                                }
+                                else
+                                {
+                                    escribir12.WriteLine(cadena12);
+
+                                }
+                                cadena12 = lectura12.ReadLine();
+                            }
+                            Console.WriteLine("Registro eliminado");
+                            if (encontrado12 == true)
+                            {
+                                Console.WriteLine("El farmaco no se encuentra en el archivo");
+                            }
+                            lectura12.Close();
+                            escribir12.Close();
+                            File.Delete("C:/archivos/farmacos.txt");
+                            File.Move("C:/archivos/tmp.txt", "C:/archivos/farmacos.txt");
+                        }
+                        catch (FileNotFoundException fe)
+                        {
+                            Console.WriteLine("Error" + fe.Message);
+                        }
+                        Console.ReadKey();
+                        break;
+
+                                                                     
+                   
+                    case 3://VENTAS
+                        
+                            StreamReader lectura11;
+                            StreamWriter escribir11;
+                            String cadena11, alumno11;
+                            int cVender;
+                            string opcion5 = null;
+                            bool encontrado11;
+                            encontrado11 = false;
+                            String[] campos11 = new string[5];
+                            try
+                            {
+
+                                lectura11 = File.OpenText("C:/archivos/farmacos.txt");
+                                escribir11 = File.CreateText("C:/archivos/tmp.txt");
+                                Console.Write("Ingresa el nombre del farmaco a vender:");
+                                alumno11 = Console.ReadLine();
+                                cadena11 = lectura11.ReadLine();
+                                
+                            while (opcion5 != "n")
+                                {
+                                    campos11 = cadena11.Split(',');
+                                    if (campos11[0].Equals(alumno11))
+                                    {
+                                        encontrado11 = true;
+                                        Console.WriteLine("Id de producto: " + campos11[0]);
+                                        Console.WriteLine("Producto: " + campos11[1]);
+                                        Console.WriteLine("Presentacion: " + campos11[2]);
+                                        Console.WriteLine("Costo: " + campos11[3]);
+                                        Console.WriteLine("Precio al publico: " + campos11[4]);
+                                        Console.WriteLine("Proveedor: " + campos11[5]);
+                                        Console.WriteLine("Existencia: " + campos11[6]);
+                                        Console.WriteLine("---------------------------------------------------");
+                                        Console.WriteLine("Ingresa el cantidad a vender: ");
+                                        cVender = int.Parse(Console.ReadLine());
+                                        escribir11.WriteLine(campos11[0] + "," + campos11[1] + "," + campos11[2] + "," + campos11[3] + "," + campos11[4] + "," + campos11[5] + "," + (int.Parse(campos11[6]) - cVender));
+                                        Console.WriteLine("Venta realizada");
+                                    }
+                                    else
+                                    {
+                                        escribir11.WriteLine(cadena11);
+                                    }
+                                    cadena11 = lectura11.ReadLine();
+                                    Console.WriteLine("Desea vender otro producto? s/n");
+                                    opcion5 = Console.ReadLine();
+                                }
+                                if (encontrado11 == false)
+                                {
+                                    Console.WriteLine("El farmaco no se encuentra en el archivo");
+                                }
+                                lectura11.Close();
+                                escribir11.Close();
+                                File.Delete("C:/archivos/farmacos.txt");
+                                File.Move("C:/archivos/tmp.txt", "C:/archivos/farmacos.txt");
+                            }
+                            catch (FileNotFoundException fe)
+                            {
+                                Console.WriteLine("Error" + fe.Message);
+                            }
+                            Console.WriteLine("Desea vender otro producto?");
+                        
+
+                        break;
+                    case 4://CONSULTAS
+                        StreamReader lectura15;
+                        StreamWriter escribir15;
+                        String cadena15, alumno15, nuevoNombre15;
+                        bool encontrado15;
+                        encontrado15 = false;
+                        String[] campos15 = new string[5];
+                        try
+                        {
+                            lectura15 = File.OpenText("C:/archivos/farmacos.txt");
+                            escribir15 = File.CreateText("C:/archivos/tmp.txt");
+                            Console.Write("Ingresa el nombre del producto a consultar:");
+                            alumno15 = Console.ReadLine();
+                            cadena15 = lectura15.ReadLine();
+
+
+                            campos15 = cadena15.Split(',');
+                            if (campos15[0].Equals(alumno15))
+                            {
+                                encontrado15 = true;
+                                Console.WriteLine("Id de producto: " + campos15[0]);
+                                Console.WriteLine("Producto: " + campos15[1]);
+                                Console.WriteLine("Presentacion: " + campos15[2]);
+                                Console.WriteLine("Costo: " + campos15[3]);
+                                Console.WriteLine("Precio al publico: " + campos15[4]);
+                                Console.WriteLine("Proveedor: " + campos15[5]);
+                                Console.WriteLine("Existencia: " + campos15[6]);
+                                Console.WriteLine("---------------------------------------------------");
+                                Console.WriteLine("Presione una tecla para continuar");
+                                nuevoNombre15 = Console.ReadLine();
+                            }
+
+
+                            if (!encontrado15)
+                            {
+                                Console.WriteLine("El alumno no se encuentra en el archivo");
+                            }
+                            lectura15.Close();
+                            escribir15.Close();
+                            File.Delete("C:/archivos/farmacos.txt");
+                            File.Move("C:/archivos/tmp.txt", "C:/archivos/farmacos.txt");
+                        }
+                        catch (FileNotFoundException fe)
+                        {
+                            Console.WriteLine("Error" + fe.Message);
+                        }
+                        break;
+
+                    case 5:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("No existe tal opcion");
+                        break;
+
+                }
+            } while (opcion != 5);
+
+
+            //Creamos el archivo
+
+
+
+
+        }
+    }
+}
